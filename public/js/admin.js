@@ -15,7 +15,7 @@ const deleteProduct = (btn) => {
     })
     .then(data => {
         console.log(data);
-        if (data.success){
+        if (data.success) {
             productElement.parentNode.removeChild(productElement);  //will work for all browsers
             //productElement.remove();  //will work in all modern browsers
         }
