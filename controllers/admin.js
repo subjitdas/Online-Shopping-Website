@@ -157,10 +157,10 @@ exports.getEditProduct = (req, res, next) => {
       return Product.deleteOne({_id: prodId, userId: req.user._id});
     })
     .then(() => {
-      res.status(200).json({ message: 'Deleting product successful!' });
+      res.status(200).json({ success: true, message: 'Deleting product successful!' });
     })
     .catch(err => {
-      res.status(500).json({ message: 'Deleting product failed!' });
+      res.status(500).json({ success: false, message: 'Deleting product failed!' });
     });
 };
 
