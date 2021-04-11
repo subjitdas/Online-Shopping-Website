@@ -170,9 +170,13 @@ exports.postPasswordReset = (req, res, next) => {
                     to: req.body.email,
                     from: process.env.email,
                     subject: 'Password Reset',
+                    // html: `
+                    //     <p>You requested a password reset</p>
+                    //     <p>Click this <a href="http://localhost:3000/new-password/${token}">link</a> to reset your password</p>
+                    // `
                     html: `
                         <p>You requested a password reset</p>
-                        <p>Click this <a href="http://localhost:3000/new-password/${token}">link</a> to reset your password</p>
+                        <p>Click this <a href="https://subjitdas-online-shopping-site.herokuapp.com/new-password/${token}">link</a> to reset your password</p>
                     `
                 })
             })
