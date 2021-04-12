@@ -12,6 +12,7 @@ const flash = require('connect-flash');
 const multer = require('multer');
 const compression = require('compression');
 const morgan = require('morgan');
+const { v4: uuidv4 } = require('uuid');
 
 dotenv.config();
 
@@ -27,12 +28,20 @@ const store = new MongodbStore({
 });
 const csrfProtection = csrf();
 
+// const fileStorage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'data/images');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, new Date().toISOString() + '-' + file.originalname);
+//     }
+// });
 const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: function(req, file, cb) {
         cb(null, 'data/images');
     },
-    filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + '-' + file.originalname);
+    filename: function(req, file, cb) {
+        cb(null, uuidv4())
     }
 });
 const fileFilter = (req, file, cb) => {
