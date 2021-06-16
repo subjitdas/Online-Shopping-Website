@@ -39,6 +39,7 @@ exports.postAddProduct = (req, res, next) => {
     });
   }
   const imageUrl = '/' + image.filename;
+  // const imageUrl = req.file.path.replace("\\" ,"/");
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).render('admin/edit-product', {
@@ -130,6 +131,7 @@ exports.getEditProduct = (req, res, next) => {
       if (image) {
         fileHelper.deleteFile('data/images' + product.imageUrl);
         product.imageUrl = '/' + image.filename;
+        // product.imageUrl = req.file.path.replace("\\" ,"/");
       }
       product.price = updatedPrice;
       product.description = updatedDescription;
